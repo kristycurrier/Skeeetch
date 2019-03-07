@@ -2,14 +2,20 @@
 using Skeeetch.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
 
 namespace Skeeetch.Controllers
 {
-    public class YelpController : Controller
+    public class SearchController : Controller
     {
 
         public ActionResult Business()
@@ -27,8 +33,30 @@ namespace Skeeetch.Controllers
 
         }
 
-    
+        public async Task<ActionResult> Keyword()
+        {
+            var client = new HttpClient();
+            var queryString = HttpUtility.ParseQueryString(string.Empty);
 
+            // Request headers
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "2416a592074c4cde91bf255cb745ddaf");
+
+            var uri = "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases?" + queryString;
+
+            HttpResponseMessage response;
+
+            // Request body
+            byte[] byteData = Encoding.UTF8.GetBytes("{'documents': [{'language': 'en','id': '1','text': 'Hello world. This is some input text that I love.'}");
+
+            using (var content = new ByteArrayContent(byteData))
+            {
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                response = await client.PostAsync(uri, content);
+                
+            }
+            var keywords = await response.Content.ReadAsAsync<DocumentRoot>();
+            return View(keywords);
+        }
 
             // GET: Yelp
             public ActionResult Index()

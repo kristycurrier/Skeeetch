@@ -169,7 +169,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="Controllers\YelpController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Data\SkeeetchContext.cs" />
     <Compile Include="Data\SkeeetchDbInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -236,8 +236,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Yelp\Review.cshtml" />
-    <Content Include="Views\Yelp\Business.cshtml" />
+    <Content Include="Views\Search\Review.cshtml" />
+    <Content Include="Views\Search\Business.cshtml" />
+    <Content Include="Views\Search\Keyword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
