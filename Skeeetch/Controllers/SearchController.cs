@@ -32,7 +32,6 @@ namespace Skeeetch.Controllers
             var result = client.GetAsync($"https://api.yelp.com/v3/businesses/qa70o0JbMVMQJf4fvWiZaw").Result;
             var business = result.Content.ReadAsAsync<Business>().Result;
 
-
             _cache.Set("id", business, _policy);
 
             return View(business);
@@ -45,7 +44,7 @@ namespace Skeeetch.Controllers
             var queryString = HttpUtility.ParseQueryString(string.Empty);
 
             // Request headers
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "2416a592074c4cde91bf255cb745ddaf");
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "***API Key here***");
 
             var uri = "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases?" + queryString;
 
@@ -65,6 +64,7 @@ namespace Skeeetch.Controllers
             //var info2 = keywords.Documents.ElementAt(1);
 
 
+            _cache.Set("keywordcache", keywords, _policy);
 
             return View(keywords);
             
@@ -72,9 +72,11 @@ namespace Skeeetch.Controllers
 
         public ActionResult Results(string id)
         {
-            var business = _cache.Get(id) as Business;
-            return View();
+            var keywords = _cache.Get("keywordcache") as DocumentRoot;
+            //var business = _cache.Get("id") as Business;
+            return View(keywords);
         }
+
 
             // GET: Yelp
             public ActionResult Index()

@@ -8,31 +8,16 @@ namespace Skeeetch.Data
     {
         protected override void Seed(SkeeetchContext context)
         {
-            var keywords = new List<Keyword>
+            var categories = new List<Category>
             {
-                new Keyword{ID = 1, DisplayTerm = "", SearchTerm = ""},
-                new Keyword{ID = 2, DisplayTerm = "", SearchTerm = ""},
-                new Keyword{ID = 3, DisplayTerm = "", SearchTerm = ""},
-                new Keyword{ID = 4, DisplayTerm = "", SearchTerm = ""},
-                new Keyword{ID = 5, DisplayTerm = "", SearchTerm = ""},
-                new Keyword{ID = 6, DisplayTerm = "", SearchTerm = ""},
-                new Keyword{ID = 7, DisplayTerm = "", SearchTerm = ""},
-                new Keyword{ID = 8, DisplayTerm = "", SearchTerm = ""},
-                new Keyword{ID = 9, DisplayTerm = "", SearchTerm = ""},
-                new Keyword{ID = 10, DisplayTerm = "", SearchTerm = ""},
-                new Keyword{ID = 11, DisplayTerm = "", SearchTerm = ""},
-                new Keyword{ID = 12, DisplayTerm = "", SearchTerm = ""},
-                new Keyword{ID = 13, DisplayTerm = "", SearchTerm = ""},
-                new Keyword{ID = 14, DisplayTerm = "", SearchTerm = ""},
-                new Keyword{ID = 15, DisplayTerm = "", SearchTerm = ""},
-                new Keyword{ID = 16, DisplayTerm = "", SearchTerm = ""},
-                new Keyword{ID = 17, DisplayTerm = "", SearchTerm = ""},
-                new Keyword{ID = 18, DisplayTerm = "", SearchTerm = ""},
-                new Keyword{ID = 19, DisplayTerm = "", SearchTerm = ""},
-                new Keyword{ID = 20, DisplayTerm = "", SearchTerm = ""}
+                new Category{ID = 1, DisplayTerm = "", SearchTerm = ""},
+                new Category{ID = 2, DisplayTerm = "", SearchTerm = ""},
+                new Category{ID = 3, DisplayTerm = "", SearchTerm = ""},
+                new Category{ID = 4, DisplayTerm = "", SearchTerm = ""},
+                new Category{ID = 5, DisplayTerm = "", SearchTerm = ""}
             };
 
-            keywords.ForEach(k => context.Keywords.Add(k));
+            categories.ForEach(k => context.Categories.Add(k));
             context.SaveChanges();
         }
     }

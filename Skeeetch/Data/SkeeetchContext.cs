@@ -15,7 +15,7 @@ namespace Skeeetch.Data
             Database.SetInitializer(new SkeeetchDbInitializer());
         }
 
-        public DbSet<Keyword> Keywords { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

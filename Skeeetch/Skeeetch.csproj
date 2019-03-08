@@ -179,7 +179,7 @@
     <Compile Include="Models\Business.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\DocumentRoot.cs" />
-    <Compile Include="Models\Keyword.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\ReviewRoot.cs" />
@@ -240,6 +240,7 @@
     <Content Include="Views\Search\Review.cshtml" />
     <Content Include="Views\Search\Business.cshtml" />
     <Content Include="Views\Search\Keyword.cshtml" />
+    <Content Include="Views\Search\Results.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
