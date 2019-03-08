@@ -44,14 +44,14 @@ namespace Skeeetch.Controllers
             var queryString = HttpUtility.ParseQueryString(string.Empty);
 
             // Request headers
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "***API Key here***");
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "***API key***");
 
             var uri = "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases?" + queryString;
 
             HttpResponseMessage response;
 
             // Request body
-            byte[] byteData = Encoding.UTF8.GetBytes("{'documents': [{'language': 'en','id': '1','text': 'Hello world. This is some input text that I love.'},{'language': 'fr','id': '2','text': 'Bonjour tout le monde'}]");
+            byte[] byteData = Encoding.UTF8.GetBytes("{'documents': [{'language': 'en','id': '1','text': 'Hello world. This is some input text that I love. Testing a little more.  Interested in how many keywords there are.'},{'language': 'fr','id': '2','text': 'Bonjour tout le monde'}]");
 
             using (var content = new ByteArrayContent(byteData))
             {

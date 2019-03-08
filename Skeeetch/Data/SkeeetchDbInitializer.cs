@@ -10,11 +10,11 @@ namespace Skeeetch.Data
         {
             var categories = new List<Category>
             {
-                new Category{ID = 1, DisplayTerm = "", SearchTerm = ""},
-                new Category{ID = 2, DisplayTerm = "", SearchTerm = ""},
-                new Category{ID = 3, DisplayTerm = "", SearchTerm = ""},
-                new Category{ID = 4, DisplayTerm = "", SearchTerm = ""},
-                new Category{ID = 5, DisplayTerm = "", SearchTerm = ""}
+                new Category{ID = 1, DisplayTerm = "Drinks", SearchTerm = "booze"},
+                new Category{ID = 2, DisplayTerm = "Food", SearchTerm = "hungry"},
+                new Category{ID = 3, DisplayTerm = "Art", SearchTerm = "creative"},
+                new Category{ID = 4, DisplayTerm = "Chilling", SearchTerm = "relaxing"},
+                new Category{ID = 5, DisplayTerm = "Active", SearchTerm = "excitement"}
             };
 
             categories.ForEach(k => context.Categories.Add(k));

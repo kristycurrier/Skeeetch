@@ -11,34 +11,39 @@
     <hr />
     <dl class="dl-horizontal">
 
-        @Html.DisplayFor(model => model.Documents.FirstOrDefault().YelpId)
+        @Html.DisplayNameFor(model => model.Documents.FirstOrDefault().YelpId)
         @Html.DisplayFor(model => model.Documents.ElementAt(1).YelpId)
         <dd>
-            @Html.DisplayFor(model => model.Documents.ElementAt(0).KeyPhrases[0])
-            @Html.DisplayFor(model => model.Documents.ElementAt(0).KeyPhrases[1])
-            
-            @if (Model.Documents.ElementAt(0).KeyPhrases.Count == 3)    //If there are 3 items, it displays the 3rd.  Stops exception from being throw
+            @for (int i = 0; i < 3; i++)
+            {
+
+
+                //@Html.DisplayFor(model => model.Documents.ElementAt(0).KeyPhrases[0])
+                //@Html.DisplayFor(model => model.Documents.ElementAt(0).KeyPhrases[1])
+
+                if (Model.Documents.ElementAt(0).KeyPhrases.Count > (i))
                 {
-                @Html.DisplayFor(model => model.Documents.ElementAt(0).KeyPhrases[2])
+                    @Html.DisplayFor(model => model.Documents.ElementAt(0).KeyPhrases[i])
+                    <br />
                 }
+            }
         </dd>
-    @*<dt>
-        @Html.DisplayNameFor(model => model.YelpId)
-    </dt>
 
-    <dd>
-        @Html.DisplayFor(model => model.YelpId)
-    </dd>
-
-    <dd>
-        @Html.DisplayFor(model => model.KeyPhrases[0])
-    </dd>
-    <dd>
-        @Html.DisplayFor(model => model.KeyPhrases[1])
-    </dd>*@
+        <dd>
+            @for (int i = 0; i < 3; i++)
+            {
 
 
+                //@Html.DisplayFor(model => model.Documents.ElementAt(0).KeyPhrases[0])
+                //@Html.DisplayFor(model => model.Documents.ElementAt(0).KeyPhrases[1])
 
+                if (Model.Documents.ElementAt(1).KeyPhrases.Count > (i))
+                {
+                    @Html.DisplayFor(model => model.Documents.ElementAt(1).KeyPhrases[i])
+                    <br />
+                }
+            }
+        </dd>
 
     </dl>
 </div>
