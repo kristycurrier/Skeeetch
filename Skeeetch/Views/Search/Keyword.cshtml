@@ -1,4 +1,4 @@
-﻿@model Skeeetch.Models.Document
+﻿@model Skeeetch.Models.DocumentRoot
 
 @{
     ViewBag.Title = "KeywordView";
@@ -10,21 +10,35 @@
     <h4>Document</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.YelpId)
-        </dt>
 
+        @Html.DisplayFor(model => model.Documents.FirstOrDefault().YelpId)
+        @Html.DisplayFor(model => model.Documents.ElementAt(1).YelpId)
         <dd>
-            @Html.DisplayFor(model => model.YelpId)
+            @Html.DisplayFor(model => model.Documents.ElementAt(0).KeyPhrases[0])
+            @Html.DisplayFor(model => model.Documents.ElementAt(0).KeyPhrases[1])
+            
+            @if (Model.Documents.ElementAt(0).KeyPhrases.Count == 3)    //If there are 3 items, it displays the 3rd.  Stops exception from being throw
+                {
+                @Html.DisplayFor(model => model.Documents.ElementAt(0).KeyPhrases[2])
+                }
         </dd>
+    @*<dt>
+        @Html.DisplayNameFor(model => model.YelpId)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.KeyPhrases[0])
-        </dd>
-        <dd>
-            @Html.DisplayFor(model => model.KeyPhrases[1])
-        </dd>
-        
+    <dd>
+        @Html.DisplayFor(model => model.YelpId)
+    </dd>
+
+    <dd>
+        @Html.DisplayFor(model => model.KeyPhrases[0])
+    </dd>
+    <dd>
+        @Html.DisplayFor(model => model.KeyPhrases[1])
+    </dd>*@
+
+
+
 
     </dl>
 </div>

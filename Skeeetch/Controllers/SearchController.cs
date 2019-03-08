@@ -12,11 +12,14 @@ using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
+using System.Runtime.Caching;
 
 namespace Skeeetch.Controllers
 {
     public class SearchController : Controller
     {
+        private readonly MemoryCache _cache = MemoryCache.Default;
+        private readonly CacheItemPolicy _policy = new CacheItemPolicy { SlidingExpiration = TimeSpan.FromHours(1) };
 
         public ActionResult Business()
         {
@@ -28,7 +31,10 @@ namespace Skeeetch.Controllers
             client.DefaultRequestHeaders.Add("Authorization", "Bearer **API KEY GOES HERE**");
             var result = client.GetAsync($"https://api.yelp.com/v3/businesses/qa70o0JbMVMQJf4fvWiZaw").Result;
             var business = result.Content.ReadAsAsync<Business>().Result;
-            
+
+
+            _cache.Set("id", business, _policy);
+
             return View(business);
 
         }
@@ -39,7 +45,7 @@ namespace Skeeetch.Controllers
             var queryString = HttpUtility.ParseQueryString(string.Empty);
 
             // Request headers
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "*API Key*");
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "2416a592074c4cde91bf255cb745ddaf");
 
             var uri = "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases?" + queryString;
 
@@ -55,8 +61,19 @@ namespace Skeeetch.Controllers
                 
             }
             var keywords = await response.Content.ReadAsAsync<DocumentRoot>();
-            var info = keywords.Documents.FirstOrDefault<Document>();
-            return View(info);
+            //var info = keywords.Documents.FirstOrDefault<Document>();
+            //var info2 = keywords.Documents.ElementAt(1);
+
+
+
+            return View(keywords);
+            
+        }
+
+        public ActionResult Results(string id)
+        {
+            var business = _cache.Get(id) as Business;
+            return View();
         }
 
             // GET: Yelp
