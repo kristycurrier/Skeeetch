@@ -39,14 +39,14 @@ namespace Skeeetch.Controllers
             var queryString = HttpUtility.ParseQueryString(string.Empty);
 
             // Request headers
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "2416a592074c4cde91bf255cb745ddaf");
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "*API Key*");
 
             var uri = "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases?" + queryString;
 
             HttpResponseMessage response;
 
             // Request body
-            byte[] byteData = Encoding.UTF8.GetBytes("{'documents': [{'language': 'en','id': '1','text': 'Hello world. This is some input text that I love.'}");
+            byte[] byteData = Encoding.UTF8.GetBytes("{'documents': [{'language': 'en','id': '1','text': 'Hello world. This is some input text that I love.'},{'language': 'fr','id': '2','text': 'Bonjour tout le monde'}]");
 
             using (var content = new ByteArrayContent(byteData))
             {
@@ -55,7 +55,8 @@ namespace Skeeetch.Controllers
                 
             }
             var keywords = await response.Content.ReadAsAsync<DocumentRoot>();
-            return View(keywords);
+            var info = keywords.Documents.FirstOrDefault<Document>();
+            return View(info);
         }
 
             // GET: Yelp
